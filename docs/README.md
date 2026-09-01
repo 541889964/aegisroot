@@ -27,7 +27,7 @@ Currently retained practical features include:
 
 ## Usage
 
-1. Clone the project:
+1. Create your project with GitHub `Use this template`, or clone it directly:
 
 ```bash
 git clone https://github.com/chenaizhang/KernelSU-Style-UI-Kit.git
@@ -36,20 +36,23 @@ cd KernelSU-Style-UI-Kit
 
 2. Open the project with Android Studio and wait for Gradle sync to finish.
 
-3. Update the basic app information for your own project:
-
-- `applicationId`, `namespace`, and version information in `app/build.gradle.kts`
-- App name and text resources in `app/src/main/res/values/strings.xml`
-- Icon assets in `app/src/main/res/drawable` and `app/src/main/res/mipmap-*`
-- Update-check URL and About page links
-
-4. Build the debug APK:
+3. Verify that the template builds:
 
 ```bash
 ./gradlew :app:assembleDebug
 ```
 
-5. For release builds, create your own signing configuration based on `sign.example.properties` and fill in real keystore information. Do not commit real signing files or passwords to the repository.
+4. Follow the migration checklist to replace the project name, package, icons, links, and sample content:
+
+[Start a new project from this template](GETTING_STARTED.md)
+
+5. Build the debug APK:
+
+```bash
+./gradlew :app:assembleDebug
+```
+
+6. For release builds, create your own signing configuration based on `sign.example.properties` and fill in real keystore information. Do not commit real signing files or passwords to the repository.
 
 ## Discussion
 

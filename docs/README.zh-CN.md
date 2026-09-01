@@ -27,7 +27,7 @@ KernelSU Style UI Kit 是一个基于 KernelSU Manager 界面风格整理而来�
 
 ## 使用方法
 
-1. 克隆项目：
+1. 使用 GitHub 的 `Use this template` 创建你的项目，或者直接克隆：
 
 ```bash
 git clone https://github.com/chenaizhang/KernelSU-Style-UI-Kit.git
@@ -36,20 +36,23 @@ cd KernelSU-Style-UI-Kit
 
 2. 使用 Android Studio 打开项目，等待 Gradle 同步完成。
 
-3. 根据你的应用修改基础信息：
-
-- `app/build.gradle.kts` 中的 `applicationId`、`namespace`、版本号
-- `app/src/main/res/values/strings.xml` 中的应用名称和文案
-- `app/src/main/res/drawable` 与 `app/src/main/res/mipmap-*` 中的图标资源
-- 更新检查链接和关于页链接
-
-4. 构建调试包：
+3. 先确认模板可以构建：
 
 ```bash
 ./gradlew :app:assembleDebug
 ```
 
-5. 如果需要发布版本，请基于 `sign.example.properties` 创建自己的签名配置文件，并填入真实 keystore 信息。不要将真实签名文件或密码提交到仓库。
+4. 按迁移清单替换项目名、包名、图标、链接和示例内容：
+
+[从模板开始新项目](GETTING_STARTED.zh-CN.md)
+
+5. 构建调试包：
+
+```bash
+./gradlew :app:assembleDebug
+```
+
+6. 如果需要发布版本，请基于 `sign.example.properties` 创建自己的签名配置文件，并填入真实 keystore 信息。不要将真实签名文件或密码提交到仓库。
 
 ## 讨论
 
