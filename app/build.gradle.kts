@@ -1,10 +1,7 @@
-@file:Suppress("UnstableApiUsage")
-
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.lsplugin.apksign)
     id("kotlin-parcelize")
 }
 
@@ -18,13 +15,6 @@ val androidTargetCompatibility: JavaVersion by rootProject.extra
 val managerVersionCode: Int by rootProject.extra
 val managerVersionName: String by rootProject.extra
 
-apksign {
-    storeFileProperty = "KEYSTORE_FILE"
-    storePasswordProperty = "KEYSTORE_PASSWORD"
-    keyAliasProperty = "KEY_ALIAS"
-    keyPasswordProperty = "KEY_PASSWORD"
-}
-
 android {
     namespace = "com.example.kernelsustyleuikit"
     val isPrBuild = project.findProperty("IS_PR_BUILD")?.toString()?.toBoolean() ?: false
@@ -33,7 +23,6 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            vcsInfo.include = false
             if (isPrBuild) applicationIdSuffix = ".dev"
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -44,34 +33,13 @@ android {
         compose = true
     }
 
-    packaging {
-        dex {
-            useLegacyPackaging = true
-        }
-        jniLibs {
-            useLegacyPackaging = true
-            excludes += "lib/*/libandroidx.graphics.path.so"
-        }
-    }
-
-    dependenciesInfo {
-        includeInApk = false
-        includeInBundle = false
-    }
-
     androidResources {
-        generateLocaleConfig = true
     }
-    compileSdk {
-        version =
-            release(androidCompileSdkVersion) {
-                minorApiLevel = androidCompileSdkVersionMinor
-            }
-    }
+    compileSdk = androidCompileSdkVersion
     buildToolsVersion = androidBuildToolsVersion
 
     defaultConfig {
-        applicationId = "com.example.kernelsustyleuikit"
+        applicationId = "com.aegis.flasher"
         minSdk = androidMinSdkVersion
         targetSdk = androidTargetSdkVersion
         versionCode = managerVersionCode
@@ -91,15 +59,10 @@ android {
     }
 }
 
-androidComponents {
-    onVariants(selector().withBuildType("release")) {
-        it.packaging.resources.excludes.addAll(listOf("META-INF/**", "kotlin/**", "**.bin"))
-    }
-}
 
 base {
     archivesName.set(
-        "KernelSUStyleUIKit_${managerVersionName}_${managerVersionCode}"
+        "Aegis_${managerVersionName}_${managerVersionCode}"
     )
 }
 
@@ -133,7 +96,6 @@ dependencies {
 
     implementation(libs.androidx.webkit)
 
-    implementation(libs.hiddenapibypass)
 
     implementation(libs.miuix.ui)
     implementation(libs.miuix.icons)
@@ -152,7 +114,6 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
         )
     }
 }
